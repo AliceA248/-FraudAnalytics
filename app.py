@@ -1,9 +1,7 @@
 import pandas as pd
 
-# Cria um DataFrame simples
-df = pd.DataFrame({
-    'coluna1': [1, 2, 3],
-    'coluna2': ['a', 'b', 'c']
-})
+csv_file_path = 'spreadsheet/transactional-sample.csv'
 
-print(df)
+df = pd.read_csv(csv_file_path, engine='python')
+
+print(df.head())
