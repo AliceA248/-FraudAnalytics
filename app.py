@@ -80,3 +80,20 @@ plt.figure(figsize=(6, 6))
 plt.pie([len(multiple_cards_chargebacks), len(multiple_cards_transactions) - len(multiple_cards_chargebacks)], labels=['With Chargeback', 'Without Chargeback'], autopct='%1.1f%%', colors=['skyblue', 'lightgreen'])
 plt.title('Percentage of Chargebacks in Transactions with Multiple Cards')
 plt.show()
+
+# Identifying Users with Multiple Devices and Transactions with Chargeback among Them
+user_devices = df.groupby('user_id')['device_id'].nunique()
+multiple_devices_limit = 3
+multiple_devices_users = user_devices[user_devices > multiple_devices_limit]
+multiple_devices_transactions = df[df['user_id'].isin(multiple_devices_users.index)]
+multiple_devices_chargebacks = multiple_devices_transactions[multiple_devices_transactions['has_cbk'] == 'true']
+
+print("Users with multiple devices:", len(multiple_devices_users))
+print("Transactions with multiple devices and chargeback:", len(multiple_devices_chargebacks))
+
+
+#  Analyzing the Distribution of Chargebacks in Transactions with Multiple Devices
+plt.figure(figsize=(6, 6))
+plt.pie([len(multiple_devices_chargebacks), len(multiple_devices_transactions) - len(multiple_devices_chargebacks)], labels=['With Chargeback', 'Without Chargeback'], autopct='%1.1f%%', colors=['skyblue', 'lightgreen'])
+plt.title('Percentage of Chargebacks in Transactions with Multiple Devices')
+plt.show()
