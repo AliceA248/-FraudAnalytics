@@ -44,3 +44,21 @@ plt.title('Distribution of chargebacks per user')
 plt.xlabel('Number of chargebacks')
 plt.ylabel('User count')
 plt.show()
+
+# Identifying Users with Multiple Cards and Transactions with Chargeback among Them
+
+user_cards = df.groupby('user_id')['card_number'].nunique()
+multiple_cards_limit = 2
+multiple_cards_users = user_cards[user_cards > multiple_cards_limit]
+multiple_cards_transactions = df[df['user_id'].isin(multiple_cards_users.index)]
+multiple_cards_chargebacks = multiple_cards_transactions[multiple_cards_transactions['has_cbk'] == 'true']
+
+print("Users with multiple cards:", len(multiple_cards_users))
+print("Transactions with multiple cards and chargeback:", len(multiple_cards_chargebacks))
+
+
+# Analyzing the Distribution of Chargebacks in Transactions with Multiple Cards
+plt.figure(figsize=(6, 6))
+plt.pie([len(multiple_cards_chargebacks), len(multiple_cards_transactions) - len(multiple_cards_chargebacks)], labels=['With Chargeback', 'Without Chargeback'], autopct='%1.1f%%', colors=['skyblue', 'lightgreen'])
+plt.title('Percentage of Chargebacks in Transactions with Multiple Cards')
+plt.show()
