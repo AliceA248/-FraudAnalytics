@@ -6,9 +6,9 @@ This is a python project that analyzes a dataset of transactions 💳 and genera
 
 ## About the Project 🚀
 
-This project was developed to provide a quick and easy way to analyze transaction data 💸 and better understand transaction patterns, chargeback incidence, and other important aspects related to financial transactions.
+Understanding transaction data 💸 is essential for businesses to identify patterns, detect anomalies, and mitigate risks such as chargebacks. This project aims to streamline the analysis process, providing valuable insights into transaction patterns, chargeback occurrences, and other critical financial aspects.
 
-The generated report contains clear and concise data visualizations as well as valuable insights to aid in informed decision-making 🧠.
+The generated reports offer clear and concise data visualizations, along with detailed insights, to empower decision-makers in making informed choices 🧠.
 
 ## Features 🛠️
 
